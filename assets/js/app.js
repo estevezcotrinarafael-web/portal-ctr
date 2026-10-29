@@ -12,9 +12,19 @@
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
   function fmt(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
   function pad(n) { return (n < 10 ? "0" : "") + n; }
+  /* Vídeo de YouTube con carga al tocar: miniatura + play; el iframe solo se crea al pulsar. */
   function yt(id, title) {
-    return '<iframe src="https://www.youtube-nocookie.com/embed/' + esc(id) + '?rel=0" title="' + esc(title) + '" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+    return '<button type="button" class="yt" data-yt="' + esc(id) + '" data-title="' + esc(title) + '">' +
+      '<img src="https://i.ytimg.com/vi/' + esc(id) + '/maxresdefault.jpg" onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/' + esc(id) + '/hqdefault.jpg\'" alt="' + esc(title) + '" loading="lazy">' +
+      '<span class="yt-play" aria-hidden="true"></span></button>';
   }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest ? e.target.closest("button.yt") : null;
+    if (!b) return;
+    var box = b.parentNode;
+    box.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + esc(b.getAttribute("data-yt")) + '?rel=0&autoplay=1" title="' + esc(b.getAttribute("data-title")) + '" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+    var f = box.firstChild; if (f && f.focus) f.focus();
+  });
 
   /* Chips de "qué te frena" -> clase puesta primero */
   var FRENOS = {
@@ -88,7 +98,7 @@
   var mr = $("#metodo-resumen");
   if (mr && C.CLASSES) {
     mr.innerHTML = C.CLASSES.map(function (c, i) {
-      return '<a class="les" href="' + ROOT + 'metodo.html#clase-' + pad(i + 1) + '"><div class="n">' + pad(i + 1) + '</div><div class="t"><b>' + esc(c.title) + '</b></div><div class="pl" aria-hidden="true"></div></a>';
+      return '<a class="les" href="' + ROOT + 'metodo.html#clase-' + pad(i + 1) + '"><div class="n">' + pad(i + 1) + '</div><div class="t"><b>' + esc(c.title) + '</b></div><div class="pl" aria-hidden="true"></div><img class="th" src="https://i.ytimg.com/vi/' + esc(c.id) + '/hqdefault.jpg" alt="" loading="lazy"></a>';
     }).join("");
   }
 
@@ -235,7 +245,8 @@
   var tm = $("#test-metabolico-btn"); if (tm) { tm.setAttribute("href", C.TEST_METABOLICO_URL); tm.setAttribute("target", "_blank"); tm.setAttribute("rel", "noopener"); }
   /* ---- /entra: vídeo ---- */
   var ev = $("#entra-video");
-  if (ev && C.ENTRA_VIDEO_ID) { ev.className = "video"; ev.innerHTML = yt(C.ENTRA_VIDEO_ID, "Vídeo del método"); }
+  if (ev && C.ENTRA_VIDEO_ID) { ev.className = "video"; ev.removeAttribute("aria-hidden"); ev.innerHTML = yt(C.ENTRA_VIDEO_ID, "Vídeo del método"); }
+  else if (ev) ev.classList.add("is-empty");
 
   /* ---- /calculadora ---- */
   if (PAGE === "calculadora") {

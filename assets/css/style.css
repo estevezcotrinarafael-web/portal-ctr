@@ -322,3 +322,59 @@ select{max-width:100%;text-overflow:ellipsis}
 .form-card .err:empty{min-height:0}
 
 .hint-inline{display:inline-block;margin-left:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--red);vertical-align:middle;white-space:nowrap}
+
+/* ================= Móvil: app, vídeos al tocar, placeholders ================= */
+.yt{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:#000;display:block;cursor:pointer}
+.yt img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85;transition:opacity .15s ease}
+.yt:hover img{opacity:1}
+.yt-play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:var(--red);box-shadow:0 0 0 10px var(--red-soft)}
+.yt-play::after{content:"";position:absolute;left:25px;top:20px;border-left:20px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent}
+.yt:focus-visible{outline:2px solid var(--red);outline-offset:-3px}
+.tabbar{display:none}
+.les .th{display:none}
+.is-empty{opacity:.55}
+
+@media (max-width:900px){
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+  body.gate-page{padding-bottom:0}
+  .fixcta,.nav{display:none!important}
+  .side{padding:12px 16px}
+  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;z-index:30;left:0;right:0;bottom:0;background:rgba(16,14,14,.97);backdrop-filter:blur(12px);border-top:1px solid var(--line2);padding:6px max(4px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(4px,env(safe-area-inset-left,0px))}
+  .tb{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:52px;padding:4px 2px;border-radius:10px;color:var(--muted);text-decoration:none;font-size:11px;font-weight:600;letter-spacing:0;min-width:0}
+  .tb svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .tb span{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tb.on{color:var(--fg);background:var(--surface2)}
+  .tb.on svg{stroke:var(--fg)}
+  .tb.red{color:var(--red)}
+  .tb:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+
+  /* cabecera */
+  .top{gap:8px}
+  .top .pg{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .who{flex:none;min-width:0;max-width:60%}
+  .who #who-hola{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .who .av{flex:none}
+
+  /* tarjetas y tipografía */
+  .res,.calc .box,.box{padding:16px}
+  .res{gap:10px}
+  .grid{gap:10px;grid-template-columns:minmax(0,1fr)}
+  .res h3,.box h3,.calc .box h3,.vitem h3,.feature h3,.box h4,.res h4{font-size:16px}
+  .res p{overflow-wrap:break-word;hyphens:none}
+  .banner h1,.hero h1,.last h1,.prose h1,.narrow h1{font-size:clamp(24px,7vw,28px)!important;text-wrap:balance}
+  .content{gap:20px}
+  .panel.on{gap:20px}
+
+  /* clases en el resumen: número + título, miniatura debajo */
+  .lessons{gap:10px}
+  .les{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px 12px;padding:12px 14px}
+  .les .n{width:auto;font-size:22px}
+  .les .pl{display:none}
+  .les .th{display:block;grid-column:1/-1;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
+
+  /* placeholders vacíos fuera en móvil */
+  .is-empty{display:none!important}
+}
+
+/* Escritorio: el reproductor de cada clase no ocupa todo el ancho */
+@media(min-width:901px){.les .yt,.les .player,.les .yt img{max-width:760px}}
