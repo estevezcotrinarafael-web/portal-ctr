@@ -308,3 +308,15 @@ select{max-width:100%;text-overflow:ellipsis}
 
 /* El CTA fijo ya cubre la tarjeta de la barra lateral: se oculta para que no se solapen */
 .sidecard{display:none}
+
+/* Formulario propio del registro */
+.form-card .card{margin-top:0}
+.form-card .card .body{position:relative}
+.form-card .q h3{text-align:left}
+.form-card .opt{min-height:52px}
+.form-card .btn{width:100%;min-height:52px}
+.form-card .btn[hidden],.form-card [hidden]{display:none!important}
+.form-card .btn:disabled{opacity:.6;cursor:wait}
+.form-card .opts .opt[aria-pressed="true"]{border-color:var(--red);background:var(--red-soft)}
+.form-card .steps .track b{width:18px}
+.form-card .err:empty{min-height:0}

@@ -92,12 +92,122 @@
     }).join("");
   }
 
+
+  /* ---- Landing: formulario propio en pasos ---- */
+  if (PAGE === "landing") {
+    var form = $("#reg-form");
+    var qs = $$(".q", form), cur = 0, ans = {}, t0 = Date.now(), sending = false;
+    var FKEY = { "Como poco y no pierdo grasa": "poco", "Tengo baja energía, voy apagado": "energia", "Pierdo grasa y luego reboto": "rebote", "Como más por mi cuenta y no sé si lo hago bien": "mas" };
+    var track = $("#q-track"), errEl = $("#reg-err"), nextB = $("#reg-next"), backB = $("#reg-back"), fine = $("#reg-fine");
+    track.innerHTML = qs.map(function () { return "<b></b>"; }).join("");
+    function err(m) { errEl.textContent = m || ""; }
+    function show(i, focus) {
+      cur = i; err("");
+      qs.forEach(function (q, k) { q.classList.toggle("on", k === i); });
+      $$("b", track).forEach(function (b, k) { b.className = k <= i ? "on" : ""; });
+      $("#q-step").textContent = "Paso " + (i + 1) + " de " + qs.length;
+      var last = i === qs.length - 1, auto = qs[i].querySelector(".opts") && !last;
+      nextB.hidden = !!auto; nextB.textContent = last ? "Quiero mi acceso" : "Continuar →";
+      fine.hidden = !last; backB.hidden = i === 0;
+      if (focus) { var f = qs[i].querySelector("input,select"); if (f) f.focus({ preventScroll: true }); }
+    }
+    $$(".q", form).forEach(function (q) {
+      var key = q.getAttribute("data-q");
+      $$(".opt", q).forEach(function (b) {
+        b.addEventListener("click", function () {
+          ans[key] = b.getAttribute("data-v");
+          $$(".opt", q).forEach(function (o) { o.setAttribute("aria-pressed", String(o === b)); });
+          err("");
+          if (key !== "fuente") setTimeout(function () { show(cur + 1, true); }, 160);
+        });
+      });
+    });
+    var prefix = $("#f-prefix"), pais = $("#f-pais");
+    function paisDe(p) { return p === "+34" ? "España" : /^\+(41|43|31|44)$/.test(p) ? "Otro país de Europa" : /^\+(54|57|52|56|51|58)$/.test(p) ? "Latinoamérica" : "Otro"; }
+    var paisTocado = false;
+    pais.addEventListener("change", function () { paisTocado = true; });
+    prefix.addEventListener("change", function () { if (!paisTocado) pais.value = paisDe(prefix.value); });
+    pais.value = paisDe(prefix.value);
+    function val(i) {
+      var k = qs[i].getAttribute("data-q"), v;
+      if (k === "frena") return ans.frena ? "" : "Elige una opción para seguir.";
+      if (k === "probado") return ans.probado ? "" : "Elige una opción para seguir.";
+      if (k === "dia_a_dia") return ans.dia_a_dia ? "" : "Elige una opción para seguir.";
+      if (k === "final_del_dia") return ans.final_del_dia ? "" : "Elige una opción para seguir.";
+      if (k === "edad") {
+        v = $("#f-edad").value.trim();
+        if (!/^\d{1,3}$/.test(v) || +v < 14 || +v > 100) return "Escribe tu edad en números (entre 14 y 100).";
+        v = $("#f-kcal").value.trim();
+        if (v && (!/^\d{3,5}$/.test(v))) return "Las calorías van en números, por ejemplo 1800. Si no lo sabes, déjalo vacío.";
+        return "";
+      }
+      if (k === "datos") {
+        if ($("#f-nombre").value.trim().length < 2) return "Escribe tu nombre.";
+        if (!/^\d{6,12}$/.test($("#f-phone").value.replace(/[\s.\-()]/g, ""))) return "Revisa tu WhatsApp: solo el número, sin el prefijo.";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($("#f-email").value.trim())) return "Revisa tu email, parece que falta algo.";
+        if (!pais.value) return "Dinos dónde vives.";
+        return "";
+      }
+      if (k === "fuente") return ans.fuente ? "" : "Elige por dónde has llegado.";
+      return "";
+    }
+    function payload() {
+      var ig = $("#f-ig").value.trim();
+      var kc = $("#f-kcal").value.trim();
+      return {
+        nombre: $("#f-nombre").value.trim(),
+        whatsapp: prefix.value + " " + $("#f-phone").value.replace(/[\s.\-()]/g, ""),
+        email: $("#f-email").value.trim(),
+        instagram: ig ? (ig.charAt(0) === "@" ? ig : "@" + ig.replace(/^https?:\/\/(www\.)?instagram\.com\//, "").replace(/\/.*$/, "")) : "",
+        pais: pais.value,
+        frena: ans.frena, probado: ans.probado, dia_a_dia: ans.dia_a_dia, final_del_dia: ans.final_del_dia,
+        edad: parseInt($("#f-edad").value, 10),
+        kcal: kc ? parseInt(kc, 10) : null,
+        fuente: ans.fuente, pieza: $("#f-pieza").value.trim(),
+        origen_url: document.referrer || "", pagina: location.href
+      };
+    }
+    function submit() {
+      if (sending) return;
+      if ($("#f-web").value) return;                       /* honeypot: bot, no se envía */
+      if (Date.now() - t0 < 5000) { err("Un momento, estamos preparando tu acceso. Vuelve a pulsar en unos segundos."); return; }
+      var data = payload(), url = C.RELAY_URL;
+      sending = true; nextB.disabled = true; nextB.textContent = "Enviando…"; err("");
+      function fail() {
+        store("ctr_pending_lead", JSON.stringify(data));
+        sending = false; nextB.disabled = false; nextB.textContent = "Quiero mi acceso";
+        err("No hemos podido guardar tus datos; vuelve a intentarlo.");
+      }
+      if (!url) { fail(); return; }
+      var ctl = window.AbortController ? new AbortController() : null;
+      var to = setTimeout(function () { if (ctl) ctl.abort(); }, 15000);
+      fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data), signal: ctl ? ctl.signal : undefined })
+        .then(function (r) {
+          clearTimeout(to);
+          if (!r.ok) throw new Error("http " + r.status);
+          store("ctr_freno", FKEY[data.frena] || ""); store("ctr_nombre", data.nombre); store("ctr_pending_lead", null);
+          location.href = "bienvenida.html";
+        })
+        .catch(function () { clearTimeout(to); fail(); });
+    }
+    nextB.addEventListener("click", function () {
+      var m = val(cur); if (m) { err(m); return; }
+      if (cur === qs.length - 1) submit(); else show(cur + 1, true);
+    });
+    backB.addEventListener("click", function (e) { e.preventDefault(); if (cur > 0) show(cur - 1); });
+    form.addEventListener("submit", function (e) { e.preventDefault(); nextB.hidden || nextB.click(); });
+    var hc = $("#hero-cta");
+    if (hc) hc.addEventListener("click", function (e) { e.preventDefault(); $("#registro").scrollIntoView({ behavior: "smooth", block: "start" }); });
+    show(0);
+  }
+
   /* ---- /bienvenida ---- */
   if (PAGE === "bienvenida") {
     var vb = $("#welcome-video");
     if (C.WELCOME_VIDEO_ID) { vb.className = "video"; vb.innerHTML = yt(C.WELCOME_VIDEO_ID, "Vídeo de bienvenida de Rafa"); }
     var chips = $$("#chips .opt");
     function mark() { var f = freno(); chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c.getAttribute("data-f") === f)); }); var fp = $("#first-pick"); if (f) { fp.hidden = false; $("#first-pick-title").textContent = "Clase " + pad(FRENOS[f].clase) + ": " + C.CLASSES[FRENOS[f].clase - 1].title; } else { fp.hidden = true; } }
+    if (freno()) { var cw = $("#chips"); if (cw && cw.parentNode) cw.parentNode.hidden = true; }
     chips.forEach(function (c) { c.addEventListener("click", function () { store("ctr_freno", c.getAttribute("data-f")); mark(); }); });
     mark();
   }

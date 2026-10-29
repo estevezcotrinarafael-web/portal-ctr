@@ -16,11 +16,57 @@
  <header class="hero">
   <h1>Consigue gratis todo lo que uso para que mis asesorados pierdan grasa comiendo más</h1>
   <p class="sub">Las guías, los tests, la calculadora y las 6 clases del método. Abierto desde el primer minuto. Se accede en 30 segundos.</p>
-  <a class="btn red" href="#registro">Quiero mi acceso gratis</a>
+  <a class="btn red" href="#registro" id="hero-cta">Quiero mi acceso gratis</a>
   <p class="cta-note">Gratis. Sin tarjeta.</p>
  </header>
  <section class="form-card" id="registro" aria-label="Formulario de acceso">
-  <div class="frame"><iframe id="airtable-form" title="Formulario de acceso al portal" loading="lazy" src="https://airtable.com/embed/appIUwpe8cWfs0LRu/paglLBvckUtdGd2qe/form"></iframe></div>
+  <div class="card" style="margin-top:0">
+   <div class="bar"><div class="dots"><b></b><b></b><b></b></div><span>Tu acceso</span></div>
+   <form class="body" id="reg-form" novalidate autocomplete="on">
+    <div class="steps"><span id="q-step">Paso 1 de 7</span><div class="track" id="q-track"></div></div>
+ <div class="q" data-q="frena">
+  <h3>¿Qué te frena más ahora mismo?</h3>
+  <p class="hint">Un toque y seguimos.</p>
+  <div class="opts"><button type="button" class="opt" data-v="Como poco y no pierdo grasa" aria-pressed="false">Como poco y no pierdo grasa <span class="arrow">→</span></button><button type="button" class="opt" data-v="Tengo baja energía, voy apagado" aria-pressed="false">Tengo baja energía, voy apagado <span class="arrow">→</span></button><button type="button" class="opt" data-v="Pierdo grasa y luego reboto" aria-pressed="false">Pierdo grasa y luego reboto <span class="arrow">→</span></button><button type="button" class="opt" data-v="Como más por mi cuenta y no sé si lo hago bien" aria-pressed="false">Como más por mi cuenta y no sé si lo hago bien <span class="arrow">→</span></button></div>
+ </div>
+ <div class="q" data-q="probado">
+  <h3>¿Qué has probado ya?</h3>
+  <div class="opts"><button type="button" class="opt" data-v="Déficit con app o dietista" aria-pressed="false">Déficit con app o dietista <span class="arrow">→</span></button><button type="button" class="opt" data-v="Keto, ayuno o low carb" aria-pressed="false">Keto, ayuno o low carb <span class="arrow">→</span></button><button type="button" class="opt" data-v="Comer más por mi cuenta" aria-pressed="false">Comer más por mi cuenta <span class="arrow">→</span></button><button type="button" class="opt" data-v="Nada en serio todavía" aria-pressed="false">Nada en serio todavía <span class="arrow">→</span></button></div>
+ </div>
+ <div class="q" data-q="dia_a_dia">
+  <h3>¿Cómo es tu día a día?</h3>
+  <div class="opts"><button type="button" class="opt" data-v="Trabajo sentado casi todo el día (oficina, ordenador)" aria-pressed="false">Trabajo sentado casi todo el día (oficina, ordenador) <span class="arrow">→</span></button><button type="button" class="opt" data-v="Trabajo de pie o moviéndome todo el día" aria-pressed="false">Trabajo de pie o moviéndome todo el día <span class="arrow">→</span></button><button type="button" class="opt" data-v="Trabajo físico: obra, reparto, hostelería..." aria-pressed="false">Trabajo físico: obra, reparto, hostelería... <span class="arrow">→</span></button><button type="button" class="opt" data-v="Soy autónomo, voy por mi cuenta" aria-pressed="false">Soy autónomo, voy por mi cuenta <span class="arrow">→</span></button><button type="button" class="opt" data-v="Tengo mi propio negocio y voy a mil" aria-pressed="false">Tengo mi propio negocio y voy a mil <span class="arrow">→</span></button><button type="button" class="opt" data-v="Estudio" aria-pressed="false">Estudio <span class="arrow">→</span></button><button type="button" class="opt" data-v="Ahora mismo no trabajo" aria-pressed="false">Ahora mismo no trabajo <span class="arrow">→</span></button></div>
+ </div>
+ <div class="q" data-q="final_del_dia">
+  <h3>¿Cómo llegas al final del día?</h3>
+  <div class="opts"><button type="button" class="opt" data-v="Con energía, y duermo bien" aria-pressed="false">Con energía, y duermo bien <span class="arrow">→</span></button><button type="button" class="opt" data-v="Cansado, pero duermo bien" aria-pressed="false">Cansado, pero duermo bien <span class="arrow">→</span></button><button type="button" class="opt" data-v="Reventado y me cuesta desconectar" aria-pressed="false">Reventado y me cuesta desconectar <span class="arrow">→</span></button><button type="button" class="opt" data-v="A base de café, y me despierto de madrugada" aria-pressed="false">A base de café, y me despierto de madrugada <span class="arrow">→</span></button></div>
+ </div>
+ <div class="q" data-q="edad">
+  <h3>¿Qué edad tienes?</h3>
+  <div class="field"><label for="f-edad">Edad</label><input id="f-edad" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" placeholder="35" autocomplete="off"></div>
+  <div class="field"><label for="f-kcal">¿Cuántas calorías comes ahora, más o menos? (opcional)</label><input id="f-kcal" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="1800" autocomplete="off"></div>
+ </div>
+ <div class="q" data-q="datos">
+  <h3>¿A dónde te mandamos el acceso?</h3>
+  <div class="field"><label for="f-nombre">Nombre</label><input id="f-nombre" placeholder="Tu nombre" autocomplete="name"></div>
+  <div class="field"><label for="f-phone">WhatsApp</label><div class="row"><select id="f-prefix" aria-label="Prefijo"><option value="+34">🇪🇸 +34</option><option value="+54">🇦🇷 +54</option><option value="+57">🇨🇴 +57</option><option value="+52">🇲🇽 +52</option><option value="+56">🇨🇱 +56</option><option value="+51">🇵🇪 +51</option><option value="+58">🇻🇪 +58</option><option value="+41">🇨🇭 +41</option><option value="+43">🇦🇹 +43</option><option value="+31">🇳🇱 +31</option><option value="+44">🇬🇧 +44</option><option value="+1">🇺🇸 +1</option></select><input id="f-phone" type="tel" inputmode="tel" placeholder="600 000 000" autocomplete="tel-national"></div></div>
+  <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" placeholder="tu@email.com" autocomplete="email"></div>
+  <div class="field"><label for="f-pais">¿Dónde vives?</label><select id="f-pais"><option value="">Elige una opción</option><option>España</option><option>Otro país de Europa</option><option>Latinoamérica</option><option>Otro</option></select></div>
+  <div class="field"><label for="f-ig">Instagram (opcional)</label><input id="f-ig" placeholder="@tuusuario" autocomplete="off" autocapitalize="none"></div>
+ </div>
+ <div class="q" data-q="fuente">
+  <h3>Última cosa</h3>
+  <p class="hint">¿Por dónde has llegado hasta aquí?</p>
+  <div class="opts" id="fuente-opts"><button type="button" class="opt" data-v="Un reel de Instagram" aria-pressed="false">Un reel de Instagram</button><button type="button" class="opt" data-v="Un vídeo de YouTube" aria-pressed="false">Un vídeo de YouTube</button><button type="button" class="opt" data-v="Una historia de Instagram" aria-pressed="false">Una historia de Instagram</button><button type="button" class="opt" data-v="Un anuncio" aria-pressed="false">Un anuncio</button><button type="button" class="opt" data-v="Me lo ha pasado alguien" aria-pressed="false">Me lo ha pasado alguien</button><button type="button" class="opt" data-v="Otro" aria-pressed="false">Otro</button></div>
+  <div class="field"><label for="f-pieza">¿Recuerdas qué vídeo o reel era? (opcional)</label><input id="f-pieza" placeholder="Si no te acuerdas, déjalo vacío" autocomplete="off"></div>
+ </div>
+    <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true"><label>No rellenar<input type="text" id="f-web" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <p class="err" id="reg-err" role="alert" aria-live="polite"></p>
+    <button type="button" class="btn red" id="reg-next">Continuar →</button>
+    <p class="fine" id="reg-fine" hidden>Gratis. Sin tarjeta. En unos 10 minutos te llama alguien del equipo de Rafa.</p>
+    <p class="fine"><a href="#" id="reg-back" hidden>← Volver</a></p>
+   </form>
+  </div>
  </section>
 </div>
 <script src="assets/js/config.js"></script>
