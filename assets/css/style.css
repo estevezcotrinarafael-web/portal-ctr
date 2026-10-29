@@ -320,3 +320,5 @@ select{max-width:100%;text-overflow:ellipsis}
 .form-card .opts .opt[aria-pressed="true"]{border-color:var(--red);background:var(--red-soft)}
 .form-card .steps .track b{width:18px}
 .form-card .err:empty{min-height:0}
+
+.hint-inline{display:inline-block;margin-left:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--red);vertical-align:middle;white-space:nowrap}
