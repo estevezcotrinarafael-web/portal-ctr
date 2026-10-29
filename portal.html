@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Portal · CTR TEAM</title>
+<meta name="description" content="Todos los recursos, abiertos desde el primer minuto.">
+<meta name="theme-color" content="#0a0909">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/logo-ctr-team.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-root="" data-page="portal">
+<div class="app">
+ <aside class="side">
+  <a class="brand" href="portal.html" aria-label="CTR TEAM, inicio"><img class="logo" src="assets/logo-ctr-team.png" alt="CTR TEAM" width="120" height="40"></a>
+  <nav class="nav" aria-label="Principal"><div class="lbl">Explorar</div><a class="nl on" href="portal.html" aria-current="page">Inicio </a><a class="nl" href="calculadora.html">Calculadora <span class="badge red">Nuevo</span></a><a class="nl" href="guias.html">Guías y tests </a><a class="nl" href="metodo.html">El Método <span class="badge">6 clases</span></a><a class="nl" href="clase-larga.html">Clase larga </a><a class="nl" href="testimonios.html">Testimonios </a><div class="lbl">Cuenta</div><a class="nl" href="entra.html">Entra en CTR TEAM </a><a class="nl" href="mi-cuenta.html">Mi cuenta </a></nav>
+  <div class="sidecard"><b>¿Lo miramos juntos?</b><p>10-15 minutos, sin compromiso. Te digo por dónde empezaría yo con tu caso.</p><a class="btn sm" data-calendly href="#">Elegir hora</a></div>
+ </aside>
+ <div class="main">
+  <div class="top"><span class="pg">Inicio</span>
+   <div class="who"><span id="who-hola">Hola, <b id="who-name"></b></span><div class="av" id="who-av" aria-hidden="true">C</div></div>
+  </div>
+  <main class="content">
+
+    <div class="banner"><span class="eyebrow">El portal</span><h1>Bienvenido. Esto es lo que hay dentro.</h1><p>Todos los recursos, abiertos desde el primer minuto. Empieza por donde quieras, aunque lo tuyo ya está arriba del todo.</p></div>
+    <a class="feature" href="calculadora.html" style="text-decoration:none;color:inherit"><div class="ic" aria-hidden="true">∑</div><div class="t"><span class="eyebrow">Nuevo · Tu metabolismo</span><h3>¿Cuánto podrías estar comiendo?</h3><p>Pon tus datos y mira la diferencia con lo que comes hoy.</p></div><span class="btn sm">Abrir →</span></a>
+    <div class="feature" style="border-color:var(--line2);background:var(--surface)"><div class="ic" aria-hidden="true">1</div><div class="t"><span class="eyebrow" style="color:var(--red)">Te lo hemos puesto primero</span><h3 id="feature-title"></h3><p id="feature-sub"></p></div><a class="btn sm" id="feature-btn" href="metodo.html">Ver la clase →</a></div>
+    <section class="sec"><div class="sec-h"><h2>Tus recursos</h2><span class="eyebrow" id="res-count"></span></div><div class="grid" id="res-grid"></div><noscript><p>Activa JavaScript para ver la rejilla de recursos.</p></noscript></section>
+    <section class="sec"><div class="sec-h"><h2>El Método · 6 clases</h2><a class="eyebrow" href="metodo.html">Ver todas →</a></div><div class="lessons" id="metodo-resumen"></div></section>
+    <section class="sec"><div class="sec-h"><h2>En producción</h2><span class="eyebrow">Sale pronto</span></div><div class="grid" id="prod-grid"></div></section>
+
+  </main>
+ </div>
+</div>
+<div class="fixcta" role="complementary" aria-label="Reserva"><div><b>¿Lo miramos juntos?</b><p>10-15 minutos, sin compromiso. Te digo por dónde empezaría yo con tu caso.</p></div><a class="btn red sm" data-calendly href="#">Elegir hora</a></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+</body></html>

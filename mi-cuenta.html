@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mi cuenta · CTR TEAM</title>
+<meta name="description" content="Tu nombre en este navegador.">
+<meta name="theme-color" content="#0a0909">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/logo-ctr-team.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-root="" data-page="mi-cuenta">
+<div class="app">
+ <aside class="side">
+  <a class="brand" href="portal.html" aria-label="CTR TEAM, inicio"><img class="logo" src="assets/logo-ctr-team.png" alt="CTR TEAM" width="120" height="40"></a>
+  <nav class="nav" aria-label="Principal"><div class="lbl">Explorar</div><a class="nl" href="portal.html">Inicio </a><a class="nl" href="calculadora.html">Calculadora <span class="badge red">Nuevo</span></a><a class="nl" href="guias.html">Guías y tests </a><a class="nl" href="metodo.html">El Método <span class="badge">6 clases</span></a><a class="nl" href="clase-larga.html">Clase larga </a><a class="nl" href="testimonios.html">Testimonios </a><div class="lbl">Cuenta</div><a class="nl" href="entra.html">Entra en CTR TEAM </a><a class="nl on" href="mi-cuenta.html" aria-current="page">Mi cuenta </a></nav>
+  <div class="sidecard"><b>¿Lo miramos juntos?</b><p>10-15 minutos, sin compromiso. Te digo por dónde empezaría yo con tu caso.</p><a class="btn sm" data-calendly href="#">Elegir hora</a></div>
+ </aside>
+ <div class="main">
+  <div class="top"><span class="pg">Mi cuenta</span>
+   <div class="who"><span id="who-hola">Hola, <b id="who-name"></b></span><div class="av" id="who-av" aria-hidden="true">C</div></div>
+  </div>
+  <main class="content">
+
+    <div class="sec-h"><div><span class="eyebrow">Mi cuenta</span><h2>Tus datos</h2></div></div>
+    <div class="lc" style="max-width:520px;padding:22px;border:1px solid var(--line);border-radius:16px;background:var(--surface);display:grid;gap:14px">
+     <div class="field"><label for="acc-name">Tu nombre</label><input id="acc-name" type="text" autocomplete="given-name" placeholder="Cómo te llamas"></div>
+     <button class="btn" id="acc-save">Guardar</button>
+     <p class="fine" id="acc-msg" role="status" style="min-height:1.2em"></p>
+     <button class="btn ghost sm" id="acc-del">Borrar mi acceso de este navegador</button>
+    </div>
+
+  </main>
+ </div>
+</div>
+<div class="fixcta" role="complementary" aria-label="Reserva"><div><b>¿Lo miramos juntos?</b><p>10-15 minutos, sin compromiso. Te digo por dónde empezaría yo con tu caso.</p></div><a class="btn red sm" data-calendly href="#">Elegir hora</a></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+</body></html>

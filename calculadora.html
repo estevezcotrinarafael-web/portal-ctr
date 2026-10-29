@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Calculadora · CTR TEAM</title>
+<meta name="description" content="¿Cuánto podrías estar comiendo? Estimación de gasto energético.">
+<meta name="theme-color" content="#0a0909">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/logo-ctr-team.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-root="" data-page="calculadora">
+<div class="app">
+ <aside class="side">
+  <a class="brand" href="portal.html" aria-label="CTR TEAM, inicio"><img class="logo" src="assets/logo-ctr-team.png" alt="CTR TEAM" width="120" height="40"></a>
+  <nav class="nav" aria-label="Principal"><div class="lbl">Explorar</div><a class="nl" href="portal.html">Inicio </a><a class="nl on" href="calculadora.html" aria-current="page">Calculadora <span class="badge red">Nuevo</span></a><a class="nl" href="guias.html">Guías y tests </a><a class="nl" href="metodo.html">El Método <span class="badge">6 clases</span></a><a class="nl" href="clase-larga.html">Clase larga </a><a class="nl" href="testimonios.html">Testimonios </a><div class="lbl">Cuenta</div><a class="nl" href="entra.html">Entra en CTR TEAM </a><a class="nl" href="mi-cuenta.html">Mi cuenta </a></nav>
+  <div class="sidecard"><b>¿Lo miramos juntos?</b><p>10-15 minutos, sin compromiso. Te digo por dónde empezaría yo con tu caso.</p><a class="btn sm" data-calendly href="#">Elegir hora</a></div>
+ </aside>
+ <div class="main">
+  <div class="top"><span class="pg">Calculadora</span>
+   <div class="who"><span id="who-hola">Hola, <b id="who-name"></b></span><div class="av" id="who-av" aria-hidden="true">C</div></div>
+  </div>
+  <main class="content">
+
+    <div class="sec-h"><div><span class="eyebrow">Calculadora</span><h2>¿Cuánto podrías estar comiendo?</h2></div></div>
+    <div class="calc">
+     <div class="box">
+      <h3>Tus datos</h3>
+      <div class="two">
+       <div class="field"><label for="c-age">Edad</label><input id="c-age" type="number" inputmode="numeric" min="14" max="90" placeholder="32"></div>
+       <div class="field"><label for="c-sex">Sexo</label><select id="c-sex"><option value="m">Hombre</option><option value="f">Mujer</option></select></div>
+      </div>
+      <div class="two">
+       <div class="field"><label for="c-w">Peso (kg)</label><input id="c-w" type="number" inputmode="decimal" min="35" max="250" step="0.1" placeholder="78"></div>
+       <div class="field"><label for="c-h">Altura (cm)</label><input id="c-h" type="number" inputmode="numeric" min="130" max="230" placeholder="178"></div>
+      </div>
+      <div class="field"><label for="c-act">¿Cómo es tu día a día?</label><select id="c-act">
+       <option value="sentado">Trabajo sentado casi todo el día (oficina, ordenador)</option>
+       <option value="pie">Trabajo de pie o moviéndome todo el día</option>
+       <option value="fisico">Trabajo físico: obra, reparto, hostelería...</option>
+       <option value="autonomo">Soy autónomo, voy por mi cuenta</option>
+       <option value="negocio">Tengo mi propio negocio y voy a mil</option>
+       <option value="estudio">Estudio</option>
+       <option value="nada">Ahora mismo no trabajo</option></select></div>
+      <div class="field"><label for="c-train">¿Entrenas?</label><select id="c-train"><option value="0">Ahora mismo no entreno</option><option value="0.1">3-4 días por semana</option><option value="0.2">5-6 días por semana</option></select></div>
+      <div class="field"><label for="c-now">¿Cuántas kcal comes ahora?</label><input id="c-now" type="number" inputmode="numeric" min="500" max="8000" placeholder="1800"></div>
+     </div>
+     <div class="box">
+      <h3>Lo que dice tu cuerpo</h3>
+      <p class="note" id="calc-empty">Rellena tus datos y aquí aparece tu cifra.</p>
+      <div id="calc-out" hidden style="display:grid;gap:14px">
+       <div class="kpi"><span class="eyebrow">Comes ahora</span><div class="n" id="k-now"></div></div>
+       <div class="kpi red"><span class="eyebrow">Podrías estar comiendo</span><div class="n" id="k-tdee"></div></div>
+       <div class="kpi"><span class="eyebrow">Diferencia</span><div class="n" id="k-diff"></div></div>
+       <div class="gap" aria-hidden="true"><i id="gap-bar" style="width:0"></i></div>
+       <div class="verdict" id="verdict" hidden></div>
+       <p class="note" style="font-family:inherit">Esta estimación usa la fórmula de gasto energético más usada en consulta. El número fino sale con temperatura, digestiones y rendimiento: eso es Calibra, la primera fase del método.</p>
+       <a class="btn" data-calendly href="#">Quiero que miréis mi caso →</a>
+      </div>
+     </div>
+    </div>
+
+  </main>
+ </div>
+</div>
+<div class="fixcta" role="complementary" aria-label="Reserva"><div><b>¿Lo miramos juntos?</b><p>10-15 minutos, sin compromiso. Te digo por dónde empezaría yo con tu caso.</p></div><a class="btn red sm" data-calendly href="#">Elegir hora</a></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+</body></html>

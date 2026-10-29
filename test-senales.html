@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Test de señales del metabolismo apagado · CTR TEAM</title>
+<meta name="description" content="10 preguntas de sí o no para saber en qué estado está tu metabolismo.">
+<meta name="theme-color" content="#0a0909">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/logo-ctr-team.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-root="" data-page="test-senales">
+<div class="app">
+ <aside class="side">
+  <a class="brand" href="portal.html" aria-label="CTR TEAM, inicio"><img class="logo" src="assets/logo-ctr-team.png" alt="CTR TEAM" width="120" height="40"></a>
+  <nav class="nav" aria-label="Principal"><div class="lbl">Explorar</div><a class="nl" href="portal.html">Inicio </a><a class="nl" href="calculadora.html">Calculadora <span class="badge red">Nuevo</span></a><a class="nl on" href="guias.html" aria-current="page">Guías y tests </a><a class="nl" href="metodo.html">El Método <span class="badge">6 clases</span></a><a class="nl" href="clase-larga.html">Clase larga </a><a class="nl" href="testimonios.html">Testimonios </a><div class="lbl">Cuenta</div><a class="nl" href="entra.html">Entra en CTR TEAM </a><a class="nl" href="mi-cuenta.html">Mi cuenta </a></nav>
+  <div class="sidecard"><b>¿Lo miramos juntos?</b><p>10-15 minutos, sin compromiso. Te digo por dónde empezaría yo con tu caso.</p><a class="btn sm" data-calendly href="#">Elegir hora</a></div>
+ </aside>
+ <div class="main">
+  <div class="top"><span class="pg">Test de señales</span>
+   <div class="who"><span id="who-hola">Hola, <b id="who-name"></b></span><div class="av" id="who-av" aria-hidden="true">C</div></div>
+  </div>
+  <main class="content">
+
+    <div class="tests-q">
+     <div><span class="eyebrow">Test · 5 min</span><h1 style="font-size:clamp(26px,5vw,38px);margin-top:6px">Test de señales del metabolismo apagado</h1></div>
+     <div id="q-box" style="display:grid;gap:18px">
+      <div class="progress" id="prog-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><i id="prog"></i></div>
+      <div class="box" style="padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--surface);display:grid;gap:18px">
+       <span class="eyebrow" id="q-n"></span>
+       <h2 id="q-t" style="font-size:clamp(20px,4.5vw,26px);min-height:3.4em"></h2>
+       <div class="yn"><button class="btn red" id="q-yes">Sí</button><button class="btn ghost" id="q-no">No</button></div>
+      </div>
+      <button class="btn ghost sm" id="q-back" hidden style="justify-self:start">← Volver</button>
+     </div>
+     <div class="result" id="r-box" hidden>
+      <div class="scorebig" id="r-score"></div>
+      <h2 id="r-title"></h2>
+      <div class="verdict" id="r-sum"></div>
+      <p id="r-mech"></p>
+      <p style="color:var(--fg);font-weight:600">Si quieres que lo miremos juntos: 10-15 minutos y te digo por dónde empezaría yo.</p>
+      <a class="btn red" data-calendly href="#">Elegir hora →</a>
+      <button class="btn ghost sm" id="r-again" style="justify-self:start">Repetir el test</button>
+     </div>
+    </div>
+
+  </main>
+ </div>
+</div>
+<div class="fixcta" role="complementary" aria-label="Reserva"><div><b>¿Lo miramos juntos?</b><p>10-15 minutos, sin compromiso. Te digo por dónde empezaría yo con tu caso.</p></div><a class="btn red sm" data-calendly href="#">Elegir hora</a></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+</body></html>
