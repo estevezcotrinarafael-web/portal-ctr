@@ -305,3 +305,6 @@ a.btn,a.nl,a.brand{text-decoration:none}
 /* Seguridad en móvil: ningún hijo de la rejilla fuerza ancho por su contenido */
 .content>*,.box,.calc>*,.two>*,.tests-q>*{min-width:0}
 select{max-width:100%;text-overflow:ellipsis}
+
+/* El CTA fijo ya cubre la tarjeta de la barra lateral: se oculta para que no se solapen */
+.sidecard{display:none}
