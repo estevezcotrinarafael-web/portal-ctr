@@ -5,7 +5,7 @@ window.CTR = {
   /* ID del vídeo del mecanismo en /entra (YouTube). Vacío = marco discreto sin vídeo. */
   ENTRA_VIDEO_ID: "",
   /* Enlace de reserva (CTA fijo, calculadora, test de señales, /entra). */
-  CALENDLY_URL: "https://calendly.com/rafa-cotri/llamada-de-diagnosticoo",
+  CALENDLY_URL: "https://calendly.com/rafa-cotri/llamada-de-diagnostico-r",
   /* Endpoint que recibe el registro (POST JSON). Vacío = el lead se guarda en el navegador (ctr_pending_lead) y se avisa. */
   RELAY_URL: "https://ctr-portal-relay.ctrteam.workers.dev",
   /* Formularios de Airtable (se embeben en iframe). */
