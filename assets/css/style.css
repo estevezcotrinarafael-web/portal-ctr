@@ -396,3 +396,24 @@ select{max-width:100%;text-overflow:ellipsis}
 .field textarea{width:100%;padding:13px 14px;border-radius:var(--r-s);border:1px solid var(--line2);background:var(--bg2);min-width:0;font:inherit;color:inherit;resize:vertical;font-size:16px;line-height:1.5}
 .field textarea::placeholder{color:var(--dim)}
 .form-card.req{margin-top:0}
+/* Afinado móvil 30/10: toques limpios, tarjetas más compactas, checklists con respuesta clara */
+a,button,.opt,.res,.tb{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.opt.sig[aria-pressed="true"]{border-color:var(--red);background:rgba(255,59,72,.07)}
+.opt.sig[aria-pressed="true"] b{color:var(--fg)}
+@media(max-width:600px){
+  .res{padding:16px;gap:10px;border-radius:14px}
+  .res .hd .ic{width:36px;height:36px;font-size:14px}
+  .res p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:13.5px}
+  .res .inc{padding-top:0;border-top:0;display:inline}
+  .res .inc,.res .open{font-size:13px}
+  .res>.inc+.open{margin-top:-4px}
+  .banner{padding:22px 18px}
+  .banner p,.hero p{font-size:15px}
+  .opt.sig{padding:12px 12px}
+  .opt.sig b{font-size:15px}
+  .opt.sig small{font-size:13.5px}
+  .prose p{font-size:15.5px}
+  .verdict{font-size:15px}
+  .vlist .mh h2{font-size:22px}
+  .field label{font-size:10.5px}
+}
