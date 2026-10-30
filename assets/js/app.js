@@ -146,18 +146,12 @@
       if (k === "frena") return ans.frena ? "" : "Elige una opción para seguir.";
       if (k === "probado") return ans.probado ? "" : "Elige una opción para seguir.";
       if (k === "dia_a_dia") return ans.dia_a_dia ? "" : "Elige una opción para seguir.";
-      if (k === "final_del_dia") return ans.final_del_dia ? "" : "Elige una opción para seguir.";
-      if (k === "edad") {
-        v = $("#f-edad").value.trim();
-        if (!/^\d{1,3}$/.test(v) || +v < 14 || +v > 100) return "Escribe tu edad en números (entre 14 y 100).";
-        v = $("#f-kcal").value.trim();
-        if (v && (!/^\d{3,5}$/.test(v))) return "Las calorías van en números, por ejemplo 1800. Si no lo sabes, déjalo vacío.";
-        return "";
-      }
       if (k === "datos") {
         if ($("#f-nombre").value.trim().length < 2) return "Escribe tu nombre.";
         if (!/^\d{6,12}$/.test($("#f-phone").value.replace(/[\s.\-()]/g, ""))) return "Revisa tu WhatsApp: solo el número, sin el prefijo.";
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($("#f-email").value.trim())) return "Revisa tu email, parece que falta algo.";
+        v = $("#f-edad").value.trim();
+        if (!/^\d{1,3}$/.test(v) || +v < 14 || +v > 100) return "Escribe tu edad en números (entre 14 y 100).";
         if (!pais.value) return "Dinos dónde vives.";
         return "";
       }
@@ -165,17 +159,13 @@
       return "";
     }
     function payload() {
-      var ig = $("#f-ig").value.trim();
-      var kc = $("#f-kcal").value.trim();
       return {
         nombre: $("#f-nombre").value.trim(),
         whatsapp: prefix.value + " " + $("#f-phone").value.replace(/[\s.\-()]/g, ""),
         email: $("#f-email").value.trim(),
-        instagram: ig ? (ig.charAt(0) === "@" ? ig : "@" + ig.replace(/^https?:\/\/(www\.)?instagram\.com\//, "").replace(/\/.*$/, "")) : "",
         pais: pais.value,
-        frena: ans.frena, probado: ans.probado, dia_a_dia: ans.dia_a_dia, final_del_dia: ans.final_del_dia,
+        frena: ans.frena, probado: ans.probado, dia_a_dia: ans.dia_a_dia,
         edad: parseInt($("#f-edad").value, 10),
-        kcal: kc ? parseInt(kc, 10) : null,
         fuente: ans.fuente, pieza: $("#f-pieza").value.trim(),
         origen_url: document.referrer || "", pagina: location.href
       };
