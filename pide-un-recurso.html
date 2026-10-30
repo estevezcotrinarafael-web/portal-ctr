@@ -18,7 +18,7 @@
 <div class="app">
  <aside class="side">
   <a class="brand" href="portal.html" aria-label="CTR TEAM, inicio"><img class="logo" src="assets/logo-ctr-team.png" alt="CTR TEAM" width="120" height="40"></a>
-  <nav class="nav" aria-label="Principal"><div class="lbl">Explorar</div><a class="nl" href="portal.html">Inicio </a><a class="nl" href="calculadora.html">Calculadora <span class="badge red">Nuevo</span></a><a class="nl on" href="guias.html" aria-current="page">Guías y tests </a><a class="nl" href="metodo.html">El Método <span class="badge">6 clases</span></a><a class="nl" href="clase-larga.html">Clase larga </a><a class="nl" href="testimonios.html">Testimonios </a><div class="lbl">Cuenta</div><a class="nl" href="entra.html">Entra en CTR TEAM </a><a class="nl" href="mi-cuenta.html">Mi cuenta </a></nav>
+  <nav class="nav" aria-label="Principal"><div class="lbl">Explorar</div><a class="nl" href="portal.html">Inicio </a><a class="nl" href="calculadora.html">Calculadora <span class="badge red">Nuevo</span></a><a class="nl on" href="guias.html" aria-current="page">Guías y tests </a><a class="nl" href="metodo.html">El Método <span class="badge">7 clases</span></a><a class="nl" href="clase-larga.html">Clase larga </a><a class="nl" href="testimonios.html">Testimonios </a><div class="lbl">Cuenta</div><a class="nl" href="entra.html">Entra en CTR TEAM </a><a class="nl" href="mi-cuenta.html">Mi cuenta </a></nav>
   <div class="sidecard"><b>¿Lo miramos juntos?</b><p>10-15 minutos, sin compromiso. Te digo por dónde empezaría yo con tu caso.</p><a class="btn sm" data-calendly href="#">Elegir hora</a></div>
  </aside>
  <div class="main">
@@ -28,7 +28,17 @@
   <main class="content">
 
     <div class="banner"><span class="eyebrow">Pide un recurso</span><h1>¿Qué te falta aquí dentro?</h1><p>Cuéntame qué quieres que haga y lo ponemos en la lista.</p></div>
-    <div class="form-card" style="margin:0 auto"><div class="frame"><iframe id="airtable-request" title="Pide un recurso" loading="lazy" src="https://airtable.com/embed/appIUwpe8cWfs0LRu/pag3bY0txbaRUousS/form" style="height:1000px"></iframe></div></div>
+    <form class="form-card req" id="req-form" style="margin:0 auto" novalidate>
+     <div class="frame" style="padding:22px;display:grid;gap:16px">
+      <div class="field"><label for="r-texto">¿Qué recurso te gustaría?</label><textarea id="r-texto" rows="5" maxlength="1000" placeholder="Por ejemplo: una guía sobre cómo afecta el alcohol al metabolismo, o un vídeo sobre entrenar con poco tiempo."></textarea></div>
+      <div class="field"><label for="r-nombre">Tu nombre</label><input id="r-nombre" type="text" autocomplete="name" maxlength="80"></div>
+      <div class="field"><label for="r-email">Tu email (para avisarte cuando esté)</label><input id="r-email" type="email" autocomplete="email" maxlength="120" inputmode="email"></div>
+      <div class="field" style="position:absolute;left:-9999px" aria-hidden="true"><label for="r-web">Web</label><input id="r-web" type="text" tabindex="-1" autocomplete="off"></div>
+      <p class="err" id="req-err" aria-live="polite"></p>
+      <button class="btn red" type="submit" id="req-send">Pedirlo</button>
+     </div>
+    </form>
+    <div class="verdict" id="req-ok" hidden style="max-width:640px;margin:0 auto">Apuntado. Lo meto en la lista y, si lo hago, te aviso por email. Gracias por pedirlo.</div>
 
   </main>
  </div>

@@ -10,19 +10,24 @@ window.CTR = {
   RELAY_URL: "https://ctr-portal-relay.ctrteam.workers.dev",
   /* Formularios de Airtable (se embeben en iframe). */
   AIRTABLE_FORM_URL: "https://airtable.com/embed/appIUwpe8cWfs0LRu/paglLBvckUtdGd2qe/form",
-  AIRTABLE_REQUEST_FORM_URL: "https://airtable.com/embed/appIUwpe8cWfs0LRu/pag3bY0txbaRUousS/form",
   /* Test de 15 preguntas (se abre en pestaña nueva). */
   TEST_METABOLICO_URL: "https://ctrteam.es/test-metabolico",
   /* Clase larga (YouTube). */
   CLASE_LARGA: { id: "xloZ_MygfIk", title: "Guía definitiva: pierde grasa comiendo MÁS (+3.300 kcal)" },
-  /* Las 6 clases del método. Provisionales hasta que Rafa grabe la miniserie: cambia aquí los id. */
+  /* Las clases del método, por secciones y ordenadas por lo que más vendió (decisión de Rafael, 30/10/2026). key = dolor; cambia los id aquí. */
+  SECTIONS: [
+    { id: "grasa", title: "Pérdida de grasa", line: "Por qué recortar dejó de funcionar y qué pasa cuando sueltas la dieta." },
+    { id: "energia", title: "Aumento de energía", line: "La energía es el primer resultado: llega antes que el espejo." },
+    { id: "mente", title: "Sueño, estrés y concentración", line: "La misma deuda vista a distintas horas del día." }
+  ],
   CLASSES: [
-    { id: "GzxFCf36lvc", title: "El Método Bioenergético: primero enciendes el metabolismo, después pierdes la grasa", line: "El orden del método: con el metabolismo encendido el cuerpo usa la grasa; apagado, la guarda." },
-    { id: "4inuA35FyUA", title: "Rebote: por qué te tapas en cuanto sueltas la dieta", line: "Qué pasa cuando sueltas la dieta y por qué tu cuerpo corre a llenar lo que le faltaba." },
-    { id: "6Rjg2_OKgc4", title: "Como poco y no bajo: las calorías no son el problema", line: "Por qué comer poco no mueve el peso: el cuerpo aprende a gastar lo que le das." },
-    { id: "OI-aRPnbiVY", title: "Te apagas a las cinco: la energía es el primer resultado", line: "Por qué la energía llega antes que el espejo y qué dice de tu metabolismo." },
-    { id: "Vr0x5wKIA78", title: "No descansas: el cortisol nocturno", line: "Cómo el cortisol alto de noche te despierta y te frena la recuperación." },
-    { id: "cnJmjtftlIc", title: "Estrés: la corriente que conecta todo lo anterior", line: "Cómo el estrés conecta temperatura, sueño y hambre en una sola corriente." }
+    { key: "rebote", sec: "grasa", id: "4inuA35FyUA", title: "Cómo mantenerte definido todo el año", line: "Qué pasa cuando sueltas la dieta y por qué tu cuerpo corre a llenar lo que le faltaba." },
+    { key: "mecanismo", sec: "grasa", id: "nmsb3Vxxc9w", title: "Convierte tu metabolismo en una máquina de quemar grasa", line: "El orden del método: con el metabolismo encendido el cuerpo usa la grasa; apagado, la guarda." },
+    { key: "calorias", sec: "grasa", id: "6Rjg2_OKgc4", title: "Por qué contar calorías dejó de funcionarte", line: "Por qué comer poco no mueve el peso: el cuerpo aprende a gastar lo que le das." },
+    { key: "energia", sec: "energia", id: "OI-aRPnbiVY", title: "Por qué la dieta low carb te deja sin energía", line: "Sin hidratos el cuerpo no optimiza: sobrevive. De ahí el bajón de las cinco." },
+    { key: "sueno", sec: "mente", id: "OQwX_CGD7lA", title: "Cómo un mal descanso está destruyendo tu progreso", line: "Dormir cuesta energía. Sin ella aguantas, no descansas, y el cuerpo guarda." },
+    { key: "estres", sec: "mente", id: "cnJmjtftlIc", title: "Cómo reducir el cortisol para perder grasa más rápido", line: "El cortisol es energía prestada: por qué te está guardando la grasa." },
+    { key: "mente", sec: "mente", id: "yM6TjdYv-0o", title: "El estado que te tiene tapado y sin foco", line: "La niebla mental no es de la cabeza: es de combustible." }
   ],
   /* Testimonios (entrevistas de YouTube). Sin cifras que no estén en el vídeo. */
   TESTIMONIALS: [

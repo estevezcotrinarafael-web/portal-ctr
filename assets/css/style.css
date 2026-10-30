@@ -378,3 +378,21 @@ select{max-width:100%;text-overflow:ellipsis}
 
 /* Escritorio: el reproductor de cada clase no ocupa todo el ancho */
 @media(min-width:901px){.les .yt,.les .player,.les .yt img{max-width:760px}}
+
+/* Checklists de señales (guías) */
+.opt.sig{align-items:flex-start}
+.opt.sig>span:first-child{display:block;min-width:0}
+.opt.sig b{display:block;font-size:16px;color:var(--fg)}
+.opt.sig small{display:block;color:var(--muted);font-size:14px;line-height:1.5;margin-top:4px;font-weight:400}
+.opt.sig[aria-pressed="true"] .arrow{color:var(--red)}
+.opt.sig .arrow{font-size:18px;flex:none;margin-top:2px}
+.prose .opts{margin:8px 0 18px}
+.prose .verdict{margin-bottom:8px}
+/* Secciones del método */
+.vlist .mh{margin-top:18px}
+.vlist .mh:first-child{margin-top:0}
+.vlist .mh p{color:var(--muted);font-size:14px;margin-top:4px}
+/* Formulario "pide un recurso" */
+.field textarea{width:100%;padding:13px 14px;border-radius:var(--r-s);border:1px solid var(--line2);background:var(--bg2);min-width:0;font:inherit;color:inherit;resize:vertical;font-size:16px;line-height:1.5}
+.field textarea::placeholder{color:var(--dim)}
+.form-card.req{margin-top:0}

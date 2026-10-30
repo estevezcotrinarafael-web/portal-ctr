@@ -28,13 +28,18 @@
 
   /* Chips de "qué te frena" -> clase puesta primero */
   var FRENOS = {
-    poco: { label: "Como poco y no pierdo grasa", clase: 3 },
-    energia: { label: "Tengo baja energía, voy apagado", clase: 4 },
-    rebote: { label: "Pierdo grasa y luego reboto", clase: 2 },
-    mas: { label: "Como más por mi cuenta y no sé si lo hago bien", clase: 1 }
+    poco: { label: "Como poco y no pierdo grasa", clase: "calorias" },
+    energia: { label: "Tengo baja energía, voy apagado", clase: "energia" },
+    rebote: { label: "Pierdo grasa y luego reboto", clase: "rebote" },
+    mas: { label: "Como más por mi cuenta y no sé si lo hago bien", clase: "mecanismo" }
   };
   function freno() { var f = store("ctr_freno"); return FRENOS[f] ? f : null; }
-  function claseFirst() { var f = freno(); return f ? FRENOS[f].clase : 1; }
+  /* Número (1..n) de la clase que se pone primero según el freno; sin freno, la primera. */
+  function claseFirst() {
+    var f = freno(), k = f ? FRENOS[f].clase : "mecanismo", L = C.CLASSES || [];
+    for (var i = 0; i < L.length; i++) if (L[i].key === k) return i + 1;
+    return 1;
+  }
 
   /* Calendly en todos los enlaces marcados */
   $$("[data-calendly]").forEach(function (a) { a.setAttribute("href", C.CALENDLY_URL); a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener"); });
@@ -55,13 +60,14 @@
     { tag: "Calculadora", ic: "∑", t: "Calculadora: ¿cuánto podrías estar comiendo?", d: "Te llevas tu cifra de comida y lo que te separa de lo que comes hoy", m: "1 min", href: "calculadora", nuevo: true },
     { tag: "Test", ic: "10", t: "Test de señales del metabolismo apagado", d: "Te llevas en qué estado está tu metabolismo y por qué", m: "5 min", href: "test-senales" },
     { tag: "Test", ic: "15", t: "Test metabólico de 15 preguntas", d: "Te llevas tu perfil metabólico de un vistazo", m: "3 min", href: "test-metabolico" },
-    { tag: "Vídeo", ic: "6", t: "Las 6 clases del método", d: "Te llevas el método de principio a fin, en el orden en que hay que verlo", m: "6 vídeos", href: "metodo" },
+    { tag: "Vídeo", ic: "7", t: "Las 7 clases del método", d: "Te llevas el método de principio a fin, en tres secciones: grasa, energía y cabeza", m: "7 vídeos", href: "metodo" },
     { tag: "Vídeo", ic: "1h", t: "Clase larga: pierde grasa comiendo más", d: "Te llevas la explicación entera de una sentada", m: "1 h", href: "clase-larga" },
     { tag: "Vídeo", ic: "3", t: "Testimonios", d: "Te llevas tres casos contados por ellos mismos", m: "3 vídeos", href: "testimonios" },
-    { tag: "Guía", ic: "G", t: "Lo que hicimos con tres clientes que comían cada vez menos", d: "Te llevas qué cambió en tres personas que comían cada vez menos", m: "8 min", href: "guias/lo-que-hicimos-con-tres-clientes", prod: true },
-    { tag: "Checklist", ic: "✓", t: "10 señales de cortisol alto", d: "Te llevas una lista para ponerle nombre a lo que notas", m: "3 min", href: "guias/10-senales-de-cortisol-alto", prod: true },
-    { tag: "Guía", ic: "Z", t: "10 señales de que tu descanso te frena", d: "Te llevas qué parte de tu descanso está frenando tu metabolismo", m: "6 min", href: "guias/10-senales-de-que-tu-descanso-te-frena", prod: true },
-    { tag: "Test", ic: "?", t: "¿Grasa o inflamación?", d: "Te llevas saber qué parte de lo que ves en el espejo es grasa", m: "3 min", href: "guias/grasa-o-inflamacion", prod: true }
+    { tag: "Test", ic: "?", t: "¿Grasa o inflamación?", d: "Te llevas saber qué parte de lo que ves en el espejo es grasa", m: "3 min", href: "guias/grasa-o-inflamacion" },
+    { tag: "Checklist", ic: "⚡", t: "10 señales de que vas con energía prestada", d: "Te llevas por qué te apagas a las cinco y qué dice eso de tu metabolismo", m: "4 min", href: "guias/10-senales-de-energia-prestada" },
+    { tag: "Checklist", ic: "✓", t: "10 señales de cortisol alto", d: "Te llevas una lista para ponerle nombre a lo que notas", m: "3 min", href: "guias/10-senales-de-cortisol-alto" },
+    { tag: "Checklist", ic: "Z", t: "10 señales de que tu descanso te frena", d: "Te llevas qué parte de tu descanso está frenando tu metabolismo", m: "4 min", href: "guias/10-senales-de-que-tu-descanso-te-frena" },
+    { tag: "Checklist", ic: "?", t: "Niebla mental: ¿falta de foco o de combustible?", d: "Te llevas por qué la cabeza se arregla por el cuerpo", m: "4 min", href: "guias/niebla-mental" }
   ];
   function resCard(r) {
     return '<a class="res' + (r.prod ? " off" : "") + '" href="' + ROOT + r.href + '.html">' +
@@ -72,17 +78,14 @@
   }
   var g1 = $("#res-grid");
   if (g1) { g1.innerHTML = RES.map(resCard).join(""); }
-  var cnt = $("#res-count"); if (cnt) cnt.textContent = RES.filter(function (r) { return !r.prod; }).length + " activos · " + RES.filter(function (r) { return r.prod; }).length + " en producción";
+  var cnt = $("#res-count"); if (cnt) cnt.textContent = RES.length + " recursos, todos abiertos";
   var g2 = $("#res-grid-guias");
   if (g2) { g2.innerHTML = RES.filter(function (r) { return /^(Guía|Checklist|Test)$/.test(r.tag); }).map(resCard).join(""); }
 
-  /* En producción (portal) */
+  /* ¿Te falta algo? (portal) */
   var prodG = $("#prod-grid");
   if (prodG) {
-    var prod = RES.filter(function (r) { return r.prod && (r.href.indexOf("tres-clientes") > -1 || r.href.indexOf("cortisol") > -1); });
-    prodG.innerHTML = prod.map(function (r) {
-      return '<a class="res off" href="' + ROOT + r.href + '.html"><div class="hd"><div class="ic" aria-hidden="true">' + esc(r.ic) + '</div><span class="pill">En producción</span></div><h3>' + esc(r.t) + '</h3><p>Aparece en tu cuenta al salir.</p></a>';
-    }).join("") + '<a class="res" href="' + ROOT + 'pide-un-recurso.html"><div class="hd"><div class="ic" aria-hidden="true">+</div><span class="pill red">Pide un recurso</span></div><h3>¿Te falta algo?</h3><p>Dime qué recurso quieres que haga y lo ponemos en la lista.</p><span class="open">Pedirlo →</span></a>';
+    prodG.innerHTML = '<a class="res" href="' + ROOT + 'pide-un-recurso.html"><div class="hd"><div class="ic" aria-hidden="true">+</div><span class="pill red">Pide un recurso</span></div><h3>¿Te falta algo?</h3><p>Dime qué recurso quieres que haga y lo ponemos en la lista.</p><span class="open">Pedirlo →</span></a>';
   }
 
   /* Destacado "te lo hemos puesto primero" */
@@ -225,10 +228,17 @@
   /* ---- /metodo ---- */
   if (PAGE === "metodo") {
     var first = claseFirst();
-    $("#vlist").innerHTML = C.CLASSES.map(function (c, i) {
+    var html = "", lastSec = null;
+    C.CLASSES.forEach(function (c, i) {
       var n = i + 1;
-      return '<article class="vitem' + (freno() && n === first ? " first-pick" : "") + '" id="clase-' + pad(n) + '"><div class="hd"><div class="n">' + pad(n) + '</div><div><h3>' + esc(c.title) + '</h3><p>' + esc(c.line) + '</p></div></div><div class="video">' + yt(c.id, c.title) + '</div></article>';
-    }).join("");
+      if (c.sec !== lastSec) {
+        var sInfo = (C.SECTIONS || []).filter(function (s) { return s.id === c.sec; })[0] || { title: c.sec, line: "" };
+        html += '<div class="sec-h mh"><div><span class="eyebrow">Sección</span><h2>' + esc(sInfo.title) + '</h2>' + (sInfo.line ? '<p>' + esc(sInfo.line) + '</p>' : "") + '</div></div>';
+        lastSec = c.sec;
+      }
+      html += '<article class="vitem' + (freno() && n === first ? " first-pick" : "") + '" id="clase-' + pad(n) + '"><div class="hd"><div class="n">' + pad(n) + '</div><div><h3>' + esc(c.title) + '</h3><p>' + esc(c.line) + '</p></div></div><div class="video">' + yt(c.id, c.title) + '</div></article>';
+    });
+    $("#vlist").innerHTML = html;
     if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) setTimeout(function () { t.scrollIntoView(); }, 50); }
   }
   /* ---- /clase-larga ---- */
@@ -241,7 +251,25 @@
   }
   /* ---- Formularios ---- */
   var f1 = $("#airtable-form"); if (f1) f1.setAttribute("src", C.AIRTABLE_FORM_URL);
-  var f2 = $("#airtable-request"); if (f2) f2.setAttribute("src", C.AIRTABLE_REQUEST_FORM_URL);
+  /* ---- /pide-un-recurso: formulario propio → puente → Airtable (💡 Peticiones del portal) ---- */
+  if (PAGE === "pide") {
+    var rf = $("#req-form"), rErr = $("#req-err"), rBtn = $("#req-send"), rOk = $("#req-ok"), r0 = Date.now(), rSending = false;
+    var rn = $("#r-nombre"); if (rn && store("ctr_nombre")) rn.value = store("ctr_nombre");
+    if (rf) rf.addEventListener("submit", function (e) {
+      e.preventDefault(); if (rSending) return;
+      var data = { tipo: "peticion", nombre: $("#r-nombre").value.trim(), email: $("#r-email").value.trim(), recurso: $("#r-texto").value.trim(), website: $("#r-web").value };
+      if (data.website) return;
+      if (!data.recurso) { rErr.textContent = "Cuéntame qué recurso te gustaría."; return; }
+      if (!data.nombre) { rErr.textContent = "Dime tu nombre para saber a quién avisar."; return; }
+      if (data.email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)) { rErr.textContent = "Ese email no parece correcto."; return; }
+      if (Date.now() - r0 < 3000) { rErr.textContent = "Un momento, vuelve a pulsar en unos segundos."; return; }
+      if (!C.RELAY_URL) { rErr.textContent = "Ahora mismo no se puede enviar; inténtalo más tarde."; return; }
+      rSending = true; rBtn.disabled = true; rBtn.textContent = "Enviando…"; rErr.textContent = "";
+      fetch(C.RELAY_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+        .then(function (r) { if (!r.ok) throw new Error("http " + r.status); rf.hidden = true; rOk.hidden = false; })
+        .catch(function () { rSending = false; rBtn.disabled = false; rBtn.textContent = "Pedirlo"; rErr.textContent = "No hemos podido guardarlo; vuelve a intentarlo."; });
+    });
+  }
   var tm = $("#test-metabolico-btn"); if (tm) { tm.setAttribute("href", C.TEST_METABOLICO_URL); tm.setAttribute("target", "_blank"); tm.setAttribute("rel", "noopener"); }
   /* ---- /entra: vídeo ---- */
   var ev = $("#entra-video");
