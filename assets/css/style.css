@@ -417,3 +417,6 @@ a,button,.opt,.res,.tb{-webkit-tap-highlight-color:transparent;touch-action:mani
   .vlist .mh h2{font-size:22px}
   .field label{font-size:10.5px}
 }
+
+.video.loom{aspect-ratio:4/3}
+@media(min-width:901px){.video.loom{max-width:640px;margin:0 auto}}

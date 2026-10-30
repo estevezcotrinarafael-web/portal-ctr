@@ -2,6 +2,8 @@
 window.CTR = {
   /* ID del vídeo de bienvenida de Rafa (YouTube). Vacío = se ve el marco "Aquí va el vídeo de Rafa". */
   WELCOME_VIDEO_ID: "",
+  /* Loom del vídeo de bienvenida (grabado el 30/10/2026). Tiene prioridad sobre WELCOME_VIDEO_ID. Vacío = no se usa. */
+  WELCOME_LOOM_ID: "826aa1b83d2d4dc6b2dc777d80711b96",
   /* ID del vídeo del mecanismo en /entra (YouTube). Vacío = marco discreto sin vídeo. */
   ENTRA_VIDEO_ID: "",
   /* Enlace de reserva (CTA fijo, calculadora, test de señales, /entra). */

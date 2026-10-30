@@ -217,7 +217,10 @@
   /* ---- /bienvenida ---- */
   if (PAGE === "bienvenida") {
     var vb = $("#welcome-video");
-    if (C.WELCOME_VIDEO_ID) { vb.className = "video"; vb.innerHTML = yt(C.WELCOME_VIDEO_ID, "Vídeo de bienvenida de Rafa"); }
+    if (C.WELCOME_LOOM_ID) {
+      vb.className = "video loom";
+      vb.innerHTML = '<iframe src="https://www.loom.com/embed/' + esc(C.WELCOME_LOOM_ID) + '?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" title="Vídeo de bienvenida de Rafa" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+    } else if (C.WELCOME_VIDEO_ID) { vb.className = "video"; vb.innerHTML = yt(C.WELCOME_VIDEO_ID, "Vídeo de bienvenida de Rafa"); }
     var chips = $$("#chips .opt");
     function mark() { var f = freno(); chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c.getAttribute("data-f") === f)); }); var fp = $("#first-pick"); if (f) { fp.hidden = false; $("#first-pick-title").textContent = "Clase " + pad(FRENOS[f].clase) + ": " + C.CLASSES[FRENOS[f].clase - 1].title; } else { fp.hidden = true; } }
     if (freno()) { var cw = $("#chips"); if (cw && cw.parentNode) cw.parentNode.hidden = true; }
