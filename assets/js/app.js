@@ -41,6 +41,17 @@
     return 1;
   }
 
+  /* UTM: se guardan la primera vez que llegan (primer toque) y viajan con el registro */
+  (function () {
+    try {
+      var q = new URLSearchParams(location.search), got = {}, any = false;
+      ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (k) { var v = q.get(k); if (v) { got[k] = String(v).slice(0, 120); any = true; } });
+      if (any && !store("ctr_utm")) store("ctr_utm", JSON.stringify(got));
+      if (document.referrer && !store("ctr_ref") && document.referrer.indexOf(location.host) < 0) store("ctr_ref", document.referrer.slice(0, 500));
+    } catch (e) {}
+  })();
+  function utm() { try { return JSON.parse(store("ctr_utm") || "{}"); } catch (e) { return {}; } }
+
   /* Calendly en todos los enlaces marcados */
   $$("[data-calendly]").forEach(function (a) { a.setAttribute("href", C.CALENDLY_URL); a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener"); });
 
@@ -167,7 +178,8 @@
         frena: ans.frena, probado: ans.probado, dia_a_dia: ans.dia_a_dia,
         edad: parseInt($("#f-edad").value, 10),
         fuente: ans.fuente, pieza: $("#f-pieza").value.trim(),
-        origen_url: document.referrer || "", pagina: location.href
+        utm_source: utm().utm_source || "", utm_medium: utm().utm_medium || "", utm_campaign: utm().utm_campaign || "", utm_content: utm().utm_content || "",
+        origen_url: store("ctr_ref") || document.referrer || "", pagina: location.href
       };
     }
     function submit() {
