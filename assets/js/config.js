@@ -5,7 +5,7 @@ window.CTR = {
   /* Loom del vídeo de bienvenida (grabado el 30/10/2026). Tiene prioridad sobre WELCOME_VIDEO_ID. Vacío = no se usa. */
   WELCOME_LOOM_ID: "826aa1b83d2d4dc6b2dc777d80711b96",
   /* ID del vídeo del mecanismo en /entra (YouTube). Vacío = marco discreto sin vídeo. */
-  ENTRA_VIDEO_ID: "",
+  ENTRA_VIDEO_ID: "i4sBU3DVZ2Y",
   /* Enlace de reserva (CTA fijo, calculadora, test de señales, /entra). */
   CALENDLY_URL: "https://calendly.com/rafa-cotri/llamada-de-diagnostico-y-clon",
   /* Endpoint que recibe el registro (POST JSON). Vacío = el lead se guarda en el navegador (ctr_pending_lead) y se avisa. */
@@ -24,7 +24,7 @@ window.CTR = {
   ],
   CLASSES: [
     { key: "rebote", sec: "grasa", id: "4inuA35FyUA", title: "Cómo mantenerte definido todo el año", line: "Qué pasa cuando sueltas la dieta y por qué tu cuerpo corre a llenar lo que le faltaba." },
-    { key: "mecanismo", sec: "grasa", id: "nmsb3Vxxc9w", title: "Convierte tu metabolismo en una máquina de quemar grasa", line: "El orden del método: con el metabolismo encendido el cuerpo usa la grasa; apagado, la guarda." },
+    { key: "mecanismo", sec: "grasa", id: "i4sBU3DVZ2Y", title: "Convierte tu metabolismo en una máquina de quemar grasa", line: "El orden del método: con el metabolismo encendido el cuerpo usa la grasa; apagado, la guarda." },
     { key: "calorias", sec: "grasa", id: "6Rjg2_OKgc4", title: "Por qué contar calorías dejó de funcionarte", line: "Por qué comer poco no mueve el peso: el cuerpo aprende a gastar lo que le das." },
     { key: "energia", sec: "energia", id: "OI-aRPnbiVY", title: "Por qué la dieta low carb te deja sin energía", line: "Sin hidratos el cuerpo no optimiza: sobrevive. De ahí el bajón de las cinco." },
     { key: "sueno", sec: "mente", id: "OQwX_CGD7lA", title: "Cómo un mal descanso está destruyendo tu progreso", line: "Dormir cuesta energía. Sin ella aguantas, no descansas, y el cuerpo guarda." },
