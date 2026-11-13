@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ritmo de subida · CTR TEAM</title>
+<meta name="description" content="¿A qué ritmo subir la comida desde donde estás? Tu subida semana a semana, sin miedo al rebote.">
+<meta name="theme-color" content="#0a0909">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="manifest" href="assets/manifest.webmanifest">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/logo-ctr-team.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-root="" data-page="subir-comida">
+<div class="app">
+ <aside class="side">
+  <a class="brand" href="portal.html" aria-label="CTR TEAM, inicio"><img class="logo" src="assets/logo-ctr-team.png" alt="CTR TEAM" width="120" height="40"></a>
+  <nav class="nav" aria-label="Principal"><div class="lbl">Explorar</div><a class="nl" href="portal.html">Inicio </a><a class="nl" href="calculadora.html">Calculadora </a><a class="nl on" href="subir-comida.html" aria-current="page">Ritmo de subida <span class="badge red">Nuevo</span></a><a class="nl" href="guias.html">Guías y tests </a><a class="nl" href="metodo.html">El Método <span class="badge">7 clases</span></a><a class="nl" href="clase-larga.html">Clase larga </a><a class="nl" href="testimonios.html">Testimonios </a><div class="lbl">Cuenta</div><a class="nl" href="entra.html">¿Lo miramos juntos? </a><a class="nl" href="mi-cuenta.html">Mi cuenta </a></nav>
+  <div class="sidecard"><b>¿Lo miramos juntos?</b><p>30 minutos, sin compromiso. Te digo por dónde empezaría yo con tu caso.</p><a class="btn sm" data-calendly href="#">Elegir hora</a></div>
+ </aside>
+ <div class="main">
+  <div class="top"><span class="pg">Ritmo de subida</span>
+   <div class="who"><span id="who-hola">Hola, <b id="who-name"></b></span><div class="av" id="who-av" aria-hidden="true">C</div></div>
+  </div>
+  <main class="content">
+
+    <div class="sec-h"><div><span class="eyebrow">Sin miedo al rebote</span><h2>¿A qué ritmo subir la comida desde donde estás?</h2></div></div>
+    <p class="sub-lead">Rebotas porque recortas desde abajo, y cuando sueltas la dieta el cuerpo corre a llenar lo que le faltaba. La salida es la contraria: subir la comida poco a poco, a un ritmo que tu cuerpo pueda usar. Mete tus datos y te digo semana a semana cuánto comer.</p>
+    <div class="calc">
+     <div class="box">
+      <h3>Tus datos</h3>
+      <div class="field"><label for="c-now">¿Cuántas kcal comes ahora?</label><input id="c-now" type="number" inputmode="numeric" min="500" max="8000" placeholder="1800"></div>
+      <div class="two">
+       <div class="field"><label for="c-age">Edad</label><input id="c-age" type="number" inputmode="numeric" min="14" max="90" placeholder="32"></div>
+       <div class="field"><label for="c-sex">Sexo</label><select id="c-sex"><option value="m">Hombre</option><option value="f">Mujer</option></select></div>
+      </div>
+      <div class="two">
+       <div class="field"><label for="c-w">Peso (kg)</label><input id="c-w" type="number" inputmode="decimal" min="35" max="250" step="0.1" placeholder="78"></div>
+       <div class="field"><label for="c-h">Altura (cm)</label><input id="c-h" type="number" inputmode="numeric" min="130" max="230" placeholder="178"></div>
+      </div>
+      <div class="field"><label for="c-act">¿Cómo es tu día a día?</label><select id="c-act">
+       <option value="sentado">Trabajo sentado casi todo el día (oficina, ordenador)</option>
+       <option value="pie">Trabajo de pie o moviéndome todo el día</option>
+       <option value="fisico">Trabajo físico: obra, reparto, hostelería...</option>
+       <option value="autonomo">Soy autónomo, voy por mi cuenta</option>
+       <option value="negocio">Tengo mi propio negocio y voy a mil</option>
+       <option value="estudio">Estudio</option>
+       <option value="nada">Ahora mismo no trabajo</option></select></div>
+      <div class="field"><label for="c-train">¿Entrenas?</label><select id="c-train"><option value="0">Ahora mismo no entreno</option><option value="0.1">3-4 días por semana</option><option value="0.2">5-6 días por semana</option></select></div>
+     </div>
+     <div class="box">
+      <h3>Tu subida, semana a semana</h3>
+      <p class="note" id="calc-empty">Rellena tus datos y aquí aparece tu plan de subida.</p>
+      <div id="calc-out" hidden style="display:grid;gap:14px">
+       <div class="two">
+        <div class="kpi"><span class="eyebrow">Comes ahora</span><div class="n" id="k-now"></div></div>
+        <div class="kpi red"><span class="eyebrow">Hasta dónde subir</span><div class="n" id="k-tdee"></div></div>
+       </div>
+       <div class="verdict" id="verdict"></div>
+       <ol class="ramp" id="ramp"></ol>
+       <div id="ramp-tips">
+        <h3 style="font-size:16px;margin:4px 0 10px">Cómo hacerlo sin romper nada</h3>
+        <ul class="rtips">
+         <li><b>Sin saltos.</b> Un escalón por semana. Si subes de golpe, tu cuerpo todavía no sabe usar esa comida y la guarda.</li>
+         <li><b>Empieza por fruta y zumos.</b> Al principio, mejor naranja, piña, papaya, frutos rojos y zumo que arroz blanco o patata en cantidad.</li>
+         <li><b>Si una semana te notas pesado o hinchado,</b> repite el escalón una semana más antes de seguir subiendo.</li>
+         <li><b>Al principio puede parecer que vas a peor antes de ir a mejor.</b> Es normal: tu cuerpo se está reajustando. No recortes por eso.</li>
+         <li><b>Nada de compensar.</b> Si un día comes de más, al día siguiente vuelves a tu escalón, sin pasar hambre.</li>
+        </ul>
+       </div>
+       <p class="note" style="font-family:inherit">El «hasta dónde subir» usa la misma fórmula de gasto energético que la calculadora. El número fino sale con temperatura, digestiones y rendimiento: eso es Calibra, la primera fase del método.</p>
+       <a class="btn" data-calendly href="#">Quiero que miréis mi caso →</a>
+      </div>
+     </div>
+    </div>
+
+  </main>
+ </div>
+</div>
+<nav class="tabbar" aria-label="Navegación del portal"><a class="tb" href="portal.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>Inicio</span></a><a class="tb on" href="calculadora.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/></svg><span>Calculadora</span></a><a class="tb" href="metodo.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg><span>Método</span></a><a class="tb" href="guias.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h10a4 4 0 0 1 4 4v12H9a4 4 0 0 1-4-4z"/><path d="M9 9h6M9 13h6"/></svg><span>Guías</span></a><a class="tb red" data-calendly href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Elegir hora</span></a></nav>
+<div class="fixcta" role="complementary" aria-label="Reserva"><div><b>¿Lo miramos juntos?</b><p>30 minutos, sin compromiso. Te digo por dónde empezaría yo con tu caso.</p></div><a class="btn red sm" data-calendly href="#">Elegir hora</a></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+</body></html>

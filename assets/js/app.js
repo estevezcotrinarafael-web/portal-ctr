@@ -68,6 +68,7 @@
 
   /* Recursos (rejilla compartida por /portal y /guias) */
   var RES = [
+    { tag: "Calculadora", ic: "↗", t: "¿A qué ritmo subir la comida desde donde estás?", d: "Te llevas tu subida semana a semana, sin miedo al rebote", m: "1 min", href: "subir-comida", nuevo: true },
     { tag: "Calculadora", ic: "∑", t: "Calculadora: ¿cuánto podrías estar comiendo?", d: "Te llevas tu cifra de comida y lo que te separa de lo que comes hoy", m: "1 min", href: "calculadora", nuevo: true },
     { tag: "Test", ic: "10", t: "Test de señales del metabolismo apagado", d: "Te llevas en qué estado está tu metabolismo y por qué", m: "5 min", href: "test-senales" },
     { tag: "Test", ic: "15", t: "Test metabólico de 15 preguntas", d: "Te llevas tu perfil metabólico de un vistazo", m: "3 min", href: "test-metabolico" },
@@ -312,6 +313,42 @@
     }
     ids.forEach(function (id) { $("#" + id).addEventListener("input", calc); $("#" + id).addEventListener("change", calc); });
     calc();
+  }
+
+  /* ---- /subir-comida: ritmo de subida (Rafael 13/11/2026: +100 kcal por semana hasta la cifra de la calculadora) ---- */
+  if (PAGE === "subir-comida") {
+    var STEP = 100;
+    var FACT2 = { sentado: 1.45, pie: 1.6, fisico: 1.75, autonomo: 1.5, negocio: 1.5, estudio: 1.4, nada: 1.35 };
+    var ids2 = ["c-now", "c-age", "c-sex", "c-w", "c-h", "c-act", "c-train"];
+    function num2(id) { var v = parseFloat(String($("#" + id).value).replace(",", ".")); return isFinite(v) ? v : NaN; }
+    function ramp() {
+      var age = num2("c-age"), w = num2("c-w"), h = num2("c-h"), now = Math.round(num2("c-now")), sex = $("#c-sex").value;
+      var act = $("#c-act").value, tr = parseFloat($("#c-train").value) || 0;
+      var ok = age >= 14 && age <= 90 && w >= 35 && w <= 250 && h >= 130 && h <= 230 && now >= 500 && now <= 8000 && FACT2[act];
+      var out = $("#calc-out");
+      if (!ok) { out.hidden = true; $("#calc-empty").hidden = false; return; }
+      var bmr = 10 * w + 6.25 * h - 5 * age + (sex === "m" ? 5 : -161);
+      var tdee = Math.round(bmr * (FACT2[act] + tr) / 50) * 50;
+      $("#k-now").innerHTML = fmt(now) + "<small>kcal</small>";
+      $("#k-tdee").innerHTML = fmt(tdee) + "<small>kcal</small>";
+      var v = $("#verdict"), list = $("#ramp"), tips = $("#ramp-tips");
+      if (now >= tdee) {
+        v.innerHTML = "Ya comes lo que tu cuerpo gasta, o más. Aquí no toca subir: si estás estancado, <b>es cuestión de orden, no de restringir más</b>.";
+        list.innerHTML = ""; list.hidden = true; tips.hidden = true;
+      } else {
+        var weeks = Math.ceil((tdee - now) / STEP), rows = [];
+        rows.push('<li class="r0"><span class="w">Hoy</span><span class="bar"><i style="width:' + (now / tdee * 100).toFixed(1) + '%"></i></span><b>' + fmt(now) + '</b></li>');
+        for (var k = 1; k <= weeks; k++) {
+          var kc = Math.min(now + STEP * k, tdee);
+          rows.push('<li' + (k === weeks ? ' class="end"' : "") + '><span class="w">Semana ' + k + '</span><span class="bar"><i style="width:' + (kc / tdee * 100).toFixed(1) + '%"></i></span><b>' + fmt(kc) + '</b></li>');
+        }
+        list.innerHTML = rows.join(""); list.hidden = false; tips.hidden = false;
+        v.innerHTML = "Subiendo <b>" + STEP + " kcal cada semana</b>, llegas a " + fmt(tdee) + " kcal en <b>" + weeks + (weeks === 1 ? " semana" : " semanas") + "</b>. Sin saltos: así tu cuerpo usa la comida en vez de guardarla.";
+      }
+      out.hidden = false; $("#calc-empty").hidden = true;
+    }
+    ids2.forEach(function (id) { $("#" + id).addEventListener("input", ramp); $("#" + id).addEventListener("change", ramp); });
+    ramp();
   }
 
   /* ---- /test-senales ---- */

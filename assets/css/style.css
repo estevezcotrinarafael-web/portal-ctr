@@ -420,3 +420,16 @@ a,button,.opt,.res,.tb{-webkit-tap-highlight-color:transparent;touch-action:mani
 
 .video.loom{aspect-ratio:4/3}
 @media(min-width:901px){.video.loom{max-width:640px;margin:0 auto}}
+
+/* ---------- Ritmo de subida (/subir-comida) ---------- */
+.sub-lead{color:var(--muted);font-size:16px;line-height:1.6;max-width:720px;margin:10px 0 18px}
+.ramp{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.ramp li{display:grid;grid-template-columns:86px minmax(0,1fr) 62px;align-items:center;gap:10px;padding:8px 12px;border-radius:10px;background:var(--bg2);border:1px solid var(--line);font-variant-numeric:tabular-nums}
+.ramp .w{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.ramp .bar{height:8px;border-radius:999px;background:var(--surface2);overflow:hidden;position:relative}
+.ramp .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--red);border-radius:999px}
+.ramp b{text-align:right;font-weight:700}
+.ramp li.r0 .bar i{background:var(--dim)}
+.ramp li.end{border-color:rgba(255,42,60,.4);background:var(--red-soft)}.ramp li.end b{color:var(--red)}
+.rtips{margin:0;padding-left:18px;display:grid;gap:8px;color:var(--muted);font-size:14px;line-height:1.55}
+.rtips b{color:var(--fg)}
